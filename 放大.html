@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .cf::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .div1 {
+            width: 150px;
+            height: 150px;
+            background-image: url("./imgs/yys4.png");
+            background-size: 100% 100%;
+            position: relative;
+        }
+
+        .div2 {
+            width: 600px;
+            height: 600px;
+            background-image: url("./imgs/yys4.png");
+            background-size: 100% 100%;
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .div3 {
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .div4 {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: move;
+            display: none;
+        }
+
+        .bx {
+            width: 800px;
+            margin: 300 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1 fl">
+        <div class="div4">
+
+        </div>
+    </div>
+    <div class="div3 fl">
+        <div class="div2 ">
+
+        </div>
+    </div>
+</body>
+<script>
+    var div1 = document.getElementsByClassName("div1")[0];
+    var div2 = document.getElementsByClassName("div2")[0];
+    var div3 = document.getElementsByClassName("div3")[0];
+    var div4 = document.getElementsByClassName("div4")[0];
+    div1.onmousemove = function (e) {
+        var max = div2.offsetWidth - div3.offsetWidth;
+        var maxx = div1.offsetWidth - div4.offsetWidth;
+        var mix = div2.offsetHeight - div3.offsetHeight;
+        var mixx = div1.offsetHeight - div4.offsetHeight;
+        var x1 =parseFloat(div4.style.left)
+        var y1 =parseFloat(div4.style.top)
+        x = e.clientX;
+        y = e.clientY;
+        div2.style = "display:block; left:"+ -x1*max/maxx+"px; top:"+ -y1*mix/mixx + "px;"
+        mix = div2.offsetHeight - div3.offsetHeight;
+        dl = parseFloat(div2.style.left);
+        dl = - dl > max ? -max : dl;
+        dt = parseFloat(div2.style.top)
+        dt = - dt > mix ? -mix : dt;
+        div2.style.left = dl + "px";
+        div2.style.top = dt + "px";
+        a1 = div4.offsetWidth / 2;
+        a2 = div4.offsetHeight / 2;
+        div4.style = "display:block; top:" + (y - a2) + "px;" + " left:" + (x - a1) + "px;";
+        max1 = div1.offsetWidth - div4.offsetWidth;
+        mix1 = div1.offsetHeight - div4.offsetHeight;
+        b1 = parseFloat(div4.style.left)
+        b2 = parseFloat(div4.style.top)
+        b1 = b1 < 0 ? 0 : b1;
+        b1 = b1 > max1 ? max1 : b1;
+        b2 = b2 < 0 ? 0 : b2;
+        b2 = b2 > mix1 ? mix1 : b2;
+        div4.style.left = b1 + "px";
+        div4.style.top = b2 + "px";
+    }
+    // div1.onmouseout = function () {
+    //     div4.style.display = "none";
+    //     div2.style.display = "none";
+    // }
+</script>
+
+</html>

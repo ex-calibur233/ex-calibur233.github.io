@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .cf::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .div1 {
+            width: 1060px;
+            height: 277px;
+            margin: 100px auto;
+        }
+
+        .div2 {
+            height: 244px;
+            overflow: hidden;
+            padding-top: 20px;
+        }
+
+        .div2 .tp {
+            width: 8100px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .div3 {
+            position: relative;
+        }
+
+        .div3 .xian {
+            width: 1060px;
+            height: 5px;
+            background: rgb(239, 239, 239);
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(0, -50%);
+        }
+
+        .div3 .anniu {
+            width: 137px;
+            height: 26px;
+            border: 1px solid rgb(194, 160, 96);
+            background-color: rgb(255, 255, 255);
+            color: #c2a060;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 11;
+
+        }
+
+        .anniu i {
+            display: block;
+            width: 7px;
+            height: 7px;
+            background-image: url("index_z_8ea32f7.png");
+            background-position: -1136px -492px;
+            margin-right: -2px;
+            animation: dong 2.5s ease infinite;
+        }
+
+        .anniu .i1 {
+            animation: dong 2.5s ease 2s infinite;
+        }
+
+        .anniu .i2 {
+            animation: dong 2.5s ease 4s infinite;
+        }
+
+        img {
+            display: block;
+            transition: all .4s ease;
+        }
+
+        @keyframes dong {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        img:hover {
+            transform: translate(0, -20px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1">
+        <div class="div2">
+            <div class="tp">
+                <img src="./imgs/lbt1.jpg" alt="">
+                <img src="./imgs/lbt2.jpg" alt="">
+                <img src="./imgs/lbt3.jpg" alt="">
+                <img src="./imgs/lbt4.jpg" alt="">
+                <img src="./imgs/lbt5.jpg" alt="">
+                <img src="./imgs/lbt6.jpg" alt="">
+                <img src="./imgs/lbt7.jpg" alt="">
+                <img src="./imgs/lbt8.jpg" alt="">
+                <img src="./imgs/lbt9.jpg" alt="">
+                <img src="./imgs/lbt10.jpg" alt="">
+                <img src="./imgs/lbt11.jpg" alt="">
+                <img src="./imgs/lbt12.jpg" alt="">
+                <img src="./imgs/lbt13.jpg" alt="">
+                <img src="./imgs/lbt14.jpg" alt="">
+                <img src="./imgs/lbt15.jpg" alt="">
+                <img src="./imgs/lbt16.jpg" alt="">
+                <img src="./imgs/lbt17.jpg" alt="">
+                <img src="./imgs/lbt18.jpg" alt="">
+                <img src="./imgs/lbt19.jpg" alt="">
+                <img src="./imgs/lbt20.jpg" alt="">
+                <img src="./imgs/lbt21.jpg" alt="">
+                <img src="./imgs/lbt22.jpg" alt="">
+                <img src="./imgs/lbt23.jpg" alt="">
+                <img src="./imgs/lbt24.jpg" alt="">
+                <img src="./imgs/lbt25.jpg" alt="">
+                <img src="./imgs/lbt26.jpg" alt="">
+                <img src="./imgs/lbt27.jpg" alt="">
+                <img src="./imgs/lbt28.jpg" alt="">
+                <img src="./imgs/lbt29.jpg" alt="">
+                <img src="./imgs/lbt30.jpg" alt="">
+            </div>
+
+        </div>
+        <div class="div3">
+            <div class="xian">
+
+            </div>
+            <div class="anniu" id="anniu">
+                拖动
+                <i></i>
+                <i class="i1"></i>
+                <i class="i2"></i>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var anniu = document.getElementById("anniu");
+    var div33 = document.getElementsByClassName("div3")[0];
+    var div2 = document.getElementsByClassName("div2")[0].offsetWidth;
+    var tp = document.getElementsByClassName("tp")[0]
+    var div3 = document.getElementsByClassName("div3")[0].offsetLeft;
+    var mix = div33.offsetWidth - anniu.offsetWidth;
+    var tpw = tp.offsetWidth - div2;
+    var ank = anniu.offsetWidth;
+    var div1 = document.getElementsByClassName('div1')[0];
+    anniu.onmousedown = function (e) {
+        var y = e.clientX - div3 - parseInt(this.style.marginLeft || 0);
+        document.onmousemove = function (e) {
+            var x = e.clientX - div3 - y;
+            x = x < 0 ? 0 : x;
+            x = x > mix ? mix : x;
+            anniu.style.marginLeft = x + "px";
+            count = x;
+            var n = x * tpw / mix;
+            tp.style.marginLeft = -n + "px";
+        }
+    }
+    document.onmouseup = function () {
+        document.onmousemove = null;
+    }
+    var count = 0;
+    if (div1.addEventListener) {
+        div1.addEventListener("DOMMouseScroll", function (e) {
+            e.preventDefault();
+            // 下
+            if (e.detail > 0) {
+                count += 50;
+            } else {
+                count -= 50;
+            }
+            count = count > mix ? mix : count;
+            count = count < 0 ? 0 : count;
+            x = count;
+            anniu.style.marginLeft = count + "px";
+
+            var n = count * tpw / mix;
+            tp.style.marginLeft = -n + "px";
+        })
+    }
+    div1.onmousewheel = function (e) {
+        if (e.deltaY) {
+            e.preventDefault();
+            if (e.deltaY > 0) {
+                count += 50;
+            } else {
+                count -= 50;
+            }
+        } else {
+            if (e.wheelDelta < 0) {
+                count += 50;
+            } else {
+                count -= 50;
+            }
+        }
+        // 下
+        count = count > mix ? mix : count;
+        count = count < 0 ? 0 : count;
+        x = count;
+        anniu.style.marginLeft = count + "px";
+
+        var n = count * tpw / mix;
+        tp.style.marginLeft = -n + "px";
+    }
+
+    /*
+        事件传播机制:
+            1. 捕获阶段
+            2. 目标阶段
+            3. 冒泡阶段
+    */
+</script>
+
+</html>
